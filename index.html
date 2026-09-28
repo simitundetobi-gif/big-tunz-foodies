@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BIG TUNZ FOODIES</title>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#e91e63">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#2b1b24}
@@ -56,10 +62,10 @@ footer strong{color:#e91e63}
 <header><nav><div class="brand">
       <div class="brand-mark">BT<span>🍴</span></div>
       <div class="logo">BIG TUNZ <span>FOODIES</span><small>Igbinedion University • Campus Delivery</small></div>
-    </div><button class="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</button></nav></header>
+    </div><button class="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</button></nav></header><div id="installAppBar" style="display:flex;justify-content:center;padding:10px;background:#fff0f5;border-bottom:1px solid #f3d5df"><button id="installAppBtn" onclick="installBigTunzApp()" style="display:none;border:0;background:#e91e63;color:#fff;padding:10px 16px;border-radius:22px;font-weight:800;cursor:pointer">📲 Install BIG TUNZ FOODIES App</button></div>
 
 <section class="hero"><div class="hero-inner">
-<div><span class="badge">🔥 IGBINEDION UNIVERSITY CAMPUS</span><h1>Hot food.<br>Fast delivery.</h1><p>Craving juicy turkey, crispy chicken, sausages, dodo, pancakes, fried eggs or chilled zobo? Order from BIG TUNZ FOODIES and get your food delivered straight to your door.</p><div class="hero-actions"><button class="hero-btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">ORDER NOW</button><a class="wa-btn" href="https://wa.me/2347072378866?text=Hello%20BIG%20TUNZ%20FOODIES%2C%20I%20want%20to%20place%20an%20order." target="_blank">💬 WhatsApp</a></div></div>
+<div><span class="badge">🔥 IGBINEDION UNIVERSITY CAMPUS</span><h1>Hot food.<br>Fast delivery.</h1><p>Craving juicy turkey, crispy chicken, sausages, dodo, pancakes, fried eggs or chilled zobo? Order from BIG TUNZ FOODIES and get your food delivered straight to your door.</p><div class="hero-actions"><button class="hero-btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">ORDER NOW</button><button id="installAppBtn" class="hero-btn" style="display:block" onclick="installBigTunzApp()">📲 DOWNLOAD APP</button><a class="wa-btn" href="https://wa.me/2347072378866?text=Hello%20BIG%20TUNZ%20FOODIES%2C%20I%20want%20to%20place%20an%20order." target="_blank">💬 WhatsApp</a></div></div>
 <div class="hero-card">🍔<br>🍟 🥤</div>
 </div></section>
 
@@ -169,6 +175,12 @@ try{
 window.location.href=`https://wa.me/2347072378866?text=${encodeURIComponent(message)}`;
 }
 renderMenu();renderCart();
+</script>
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));}
+let deferredInstallPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e; const b=document.getElementById('installAppBtn'); if(b)b.style.display='block';});
+async function installBigTunzApp(){if(!deferredInstallPrompt){alert('On Android Chrome, open the browser menu ⋮ and choose “Install app” or “Add to Home screen”.');return;} deferredInstallPrompt.prompt(); await deferredInstallPrompt.userChoice; deferredInstallPrompt=null;}
 </script>
 </body>
 </html>
