@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIG TUNZ FOODIES</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff8ef;color:#1e1e1e}
+header{background:#171717;color:white;padding:18px 5%;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px #0002}
+nav{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:auto}
+.logo{font-size:24px;font-weight:900;color:#ff8a00}.logo span{color:white}
+.cart-btn{background:#ff8a00;border:0;padding:11px 16px;border-radius:25px;font-weight:bold;cursor:pointer}
+.hero{padding:55px 5%;background:linear-gradient(135deg,#20170e,#ff8a00);color:white}
+.hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:25px;align-items:center}
+.hero h1{font-size:clamp(38px,7vw,68px);line-height:.95;margin-bottom:18px}.hero p{font-size:18px;max-width:580px;line-height:1.6}
+.badge{display:inline-block;background:#fff;color:#222;padding:8px 13px;border-radius:20px;font-weight:bold;margin-bottom:15px}
+.hero-card{background:#ffffff18;border:1px solid #ffffff40;border-radius:25px;padding:30px;text-align:center;font-size:75px}
+main{max-width:1100px;margin:auto;padding:35px 5%}
+.section-title{font-size:30px;margin-bottom:18px}.categories{display:flex;gap:10px;overflow:auto;margin-bottom:25px}.cat{border:1px solid #ddd;background:white;padding:10px 16px;border-radius:22px;cursor:pointer;white-space:nowrap}.cat.active{background:#ff8a00;color:white;border-color:#ff8a00}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.food{background:white;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #00000010}.food-img{height:155px;background:#ffe0b2;display:flex;align-items:center;justify-content:center;font-size:65px}.food-info{padding:17px}.food-info h3{margin-bottom:6px}.food-info p{color:#777;font-size:13px;min-height:32px}.row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}.price{font-weight:900;color:#e56f00}.add{border:0;background:#171717;color:white;border-radius:20px;padding:9px 14px;cursor:pointer}
+.cart{position:fixed;right:-420px;top:0;width:min(390px,100%);height:100%;background:white;z-index:20;box-shadow:-5px 0 25px #0003;padding:25px;transition:.3s;overflow:auto}.cart.open{right:0}.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{border:0;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer}.cart-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:13px 0}.cart-item small{color:#777}.total{font-size:22px;font-weight:900;display:flex;justify-content:space-between;margin:22px 0}.checkout{width:100%;padding:14px;background:#ff8a00;border:0;border-radius:10px;font-weight:900;cursor:pointer}
+form{display:none;margin-top:18px;background:#fff8ef;padding:16px;border-radius:12px}form.show{display:block}input,select{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px}
+footer{background:#171717;color:#bbb;text-align:center;padding:30px 5%;margin-top:30px}footer strong{color:#ff8a00}
+.empty{text-align:center;color:#777;padding:30px 0}
+@media(max-width:750px){.hero-inner{grid-template-columns:1fr}.hero-card{display:none}.menu{grid-template-columns:repeat(2,1fr)}.food-img{height:120px;font-size:50px}}
+@media(max-width:480px){.menu{grid-template-columns:1fr}.hero{padding:40px 5%}}
+
+.brand{display:flex;align-items:center;gap:10px}.brand-mark{width:42px;height:42px;border-radius:12px;background:#ff8a00;color:#171717;display:flex;align-items:center;justify-content:center;font-weight:1000;font-size:12px;box-shadow:0 0 0 2px #fff3}.brand-mark span{font-size:17px;margin-left:-2px}.logo{display:flex;flex-direction:column}.logo small{font-size:9px;font-weight:500;color:#bbb;margin-top:3px;letter-spacing:.4px}.hero-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}.hero-btn,.wa-btn{padding:13px 19px;border-radius:25px;font-weight:900;text-decoration:none;border:0;cursor:pointer}.hero-btn{background:#fff;color:#171717}.wa-btn{background:#25d366;color:#fff}.menu-note{color:#777;margin-top:-10px;margin-bottom:18px}.price{font-size:14px}
+
+.secure-note{font-size:12px;color:#666;line-height:1.5;margin-top:10px}
+.checkout{margin-top:4px}
+</style>
+</head>
+<body>
+<header><nav><div class="brand">
+      <div class="brand-mark">BT<span>🍴</span></div>
+      <div class="logo">BIG TUNZ <span>FOODIES</span><small>Igbinedion University • Campus Delivery</small></div>
+    </div><button class="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="count">0</span>)</button></nav></header>
+
+<section class="hero"><div class="hero-inner">
+<div><span class="badge">🔥 IGBINEDION UNIVERSITY CAMPUS</span><h1>Hot food.<br>Fast delivery.</h1><p>Craving juicy turkey, crispy chicken, sausages, dodo, pancakes, fried eggs or chilled zobo? Order from BIG TUNZ FOODIES and get your food delivered straight to your door.</p><div class="hero-actions"><button class="hero-btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">ORDER NOW</button><a class="wa-btn" href="https://wa.me/2347072378866?text=Hello%20BIG%20TUNZ%20FOODIES%2C%20I%20want%20to%20place%20an%20order." target="_blank">💬 WhatsApp</a></div></div>
+<div class="hero-card">🍔<br>🍟 🥤</div>
+</div></section>
+
+<main>
+<h2 class="section-title">What are you craving?</h2><p class="menu-note">Fresh & ready to deliver • Igbinedion University campus</p>
+<div class="categories">
+<button class="cat active" onclick="filterFood('all',this)">All</button>
+<button class="cat" onclick="filterFood('protein',this)">🍗 Proteins</button>
+<button class="cat" onclick="filterFood('sides',this)">🍌 Sides</button>
+<button class="cat" onclick="filterFood('breakfast',this)">🥞 Breakfast</button>
+<button class="cat" onclick="filterFood('drinks',this)">🥤 Drinks</button>
+</div>
+<div class="menu" id="menu"></div>
+</main>
+
+<aside class="cart" id="cart">
+<div class="cart-head"><h2>Your Order</h2><button class="close" onclick="toggleCart()">✕</button></div>
+<div id="cartItems"></div>
+<div id="packagingLine" style="display:flex;justify-content:space-between;border-top:1px solid #eee;padding-top:13px;color:#666;font-size:14px"><span>Packaging per order</span><span>₦300</span></div>
+<div id="deliveryLine" style="display:flex;justify-content:space-between;color:#666;font-size:14px;padding-top:8px"><span>Delivery</span><span>₦800</span></div>
+<div class="total"><span>Total</span><span id="total">₦1,100</span></div>
+<button class="checkout" onclick="showForm()">PROCEED TO CHECKOUT</button>
+<form id="orderForm" onsubmit="placeOrder(event)">
+<input id="name" required placeholder="Your name">
+<input id="phone" required placeholder="Phone number">
+<input id="email" type="email" required placeholder="Email address (for payment receipt)">
+<select id="location" required><option value="">Select campus delivery point</option><option>Main Gate</option><option>Hostel</option><option>Lecture Hall</option><option>Other campus location</option></select>
+<input id="note" placeholder="Room/block or delivery note">
+<button class="checkout" type="submit">💳 PAY & PLACE ORDER</button>
+<p class="secure-note">🔒 Secure online payment powered by Paystack. Your order is sent to BIG TUNZ after payment is verified.</p>
+</form>
+</aside>
+
+<footer><strong>BIG TUNZ FOODIES</strong><br><br>
+Igbinedion University • Fresh & ready to deliver<br><br>
+📞 Order: <a href="tel:07072378866" style="color:#ff8a00">0707 237 8866</a><br>
+💬 WhatsApp / DM: <a href="https://wa.me/2347072378866" target="_blank" style="color:#25d366">0707 237 8866</a><br><br>
+Fast delivery to your doorstep!<br><br>© 2026 BIG TUNZ FOODIES</footer>
+
+<script>
+const foods=[
+{name:"Piece of Turkey",cat:"protein",price:3500,emoji:"🍗",desc:"Juicy, well-seasoned turkey."},
+{name:"Piece of Chicken",cat:"protein",price:2500,emoji:"🍗",desc:"Golden crispy chicken, freshly prepared."},
+{name:"Fried Sausages",cat:"protein",price:500,emoji:"🌭",desc:"Tasty fried sausages served hot."},
+{name:"1 Fried Egg",cat:"breakfast",price:400,emoji:"🍳",desc:"Freshly fried egg, served hot."},
+{name:"1 Portion Fried Plantain (Dodo)",cat:"sides",price:500,emoji:"🍌",desc:"Sweet golden dodo, fried fresh."},
+{name:"1 Slice Pancake",cat:"breakfast",price:450,emoji:"🥞",desc:"Fluffy pancake, freshly prepared."},
+{name:"Can of Zobo",cat:"drinks",price:700,emoji:"🥤",desc:"Refreshing, ice-chilled zobo drink."}
+];
+let cart=[];
+const naira=n=>new Intl.NumberFormat("en-NG",{style:"currency",currency:"NGN",maximumFractionDigits:0}).format(n);
+
+function renderMenu(list=foods){
+document.getElementById("menu").innerHTML=list.map((f,i)=>`
+<div class="food"><div class="food-img">${f.emoji}</div><div class="food-info"><h3>${f.name}</h3><p>${f.desc}</p><div class="row"><span class="price">${naira(f.price)}</span><button class="add" onclick="add(${foods.indexOf(f)})">+ Add</button></div></div></div>`).join("");
+}
+function filterFood(cat,el){document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderMenu(cat==="all"?foods:foods.filter(x=>x.cat===cat))}
+function add(i){let f=foods[i],item=cart.find(x=>x.name===f.name);item?item.qty++:cart.push({...f,qty:1});renderCart()}
+function remove(i){cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);renderCart()}
+function renderCart(){
+document.getElementById("count").textContent=cart.reduce((a,x)=>a+x.qty,0);
+document.getElementById("cartItems").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><b>${x.name}</b><br><small>${naira(x.price)} × ${x.qty}</small></div><div><button onclick="remove(${i})">−</button> <button onclick="add(${foods.findIndex(f=>f.name===x.name)})">+</button></div></div>`).join(""):'<div class="empty">Your cart is empty.</div>';
+const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
+document.getElementById("total").textContent=naira(subtotal+300+800);
+document.getElementById("packagingLine").style.display=cart.length?"flex":"none";
+document.getElementById("deliveryLine").style.display=cart.length?"flex":"none";
+}
+function toggleCart(){document.getElementById("cart").classList.toggle("open")}
+function showForm(){if(!cart.length)return alert("Please add a meal first.");document.getElementById("orderForm").classList.add("show")}
+async function placeOrder(e){
+e.preventDefault();
+if(!cart.length)return alert("Please add a meal first.");
+const order={
+name:document.getElementById("name").value.trim(),
+phone:document.getElementById("phone").value.trim(),
+email:document.getElementById("email").value.trim(),
+location:document.getElementById("location").value,
+note:document.getElementById("note").value.trim(),
+items:cart.map(x=>({name:x.name,qty:x.qty,price:x.price})),
+amount:cart.reduce((a,x)=>a+x.price*x.qty,0)+300+800
+};
+try{
+  const res=await fetch("/api/create-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)});
+  const data=await res.json();
+  if(!res.ok) throw new Error(data.error||"Could not start payment.");
+  if(data.authorization_url) window.location.href=data.authorization_url;
+  else throw new Error("Payment link was not returned.");
+}catch(err){alert(err.message+"\n\nIf this is a new installation, the Paystack server settings still need to be connected.")}
+}
+renderMenu();renderCart();
+</script>
+</body>
+</html>
