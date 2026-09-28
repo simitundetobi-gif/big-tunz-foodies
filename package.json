@@ -1,16 +1,9 @@
 {
   "name": "big-tunz-foodies",
   "version": "1.0.0",
-  "private": true,
-  "description": "BIG TUNZ FOODIES campus ordering and Paystack payment server",
+  "description": "BIG TUNZ FOODIES campus food ordering website",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "dependencies": {
-    "express": "^4.21.2"
-  }
+  "scripts": {"start": "node server.js"},
+  "engines": {"node": ">=18"},
+  "dependencies": {"express": "^4.21.2"}
 }

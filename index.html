@@ -6,30 +6,44 @@
 <title>BIG TUNZ FOODIES</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:#fff8ef;color:#1e1e1e}
-header{background:#171717;color:white;padding:18px 5%;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px #0002}
+body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#2b1b24}
+header{background:#fff;color:#2b1b24;padding:18px 5%;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px #0002}
 nav{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:auto}
-.logo{font-size:24px;font-weight:900;color:#ff8a00}.logo span{color:white}
-.cart-btn{background:#ff8a00;border:0;padding:11px 16px;border-radius:25px;font-weight:bold;cursor:pointer}
-.hero{padding:55px 5%;background:linear-gradient(135deg,#20170e,#ff8a00);color:white}
+.logo{font-size:24px;font-weight:900;color:#e91e63}.logo span{color:#2b1b24}
+.cart-btn{background:#e91e63;border:0;padding:11px 16px;border-radius:25px;font-weight:bold;cursor:pointer}
+.hero{padding:55px 5%;background:linear-gradient(135deg,#f8a8c0,#e91e63);color:white}
 .hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:25px;align-items:center}
 .hero h1{font-size:clamp(38px,7vw,68px);line-height:.95;margin-bottom:18px}.hero p{font-size:18px;max-width:580px;line-height:1.6}
 .badge{display:inline-block;background:#fff;color:#222;padding:8px 13px;border-radius:20px;font-weight:bold;margin-bottom:15px}
 .hero-card{background:#ffffff18;border:1px solid #ffffff40;border-radius:25px;padding:30px;text-align:center;font-size:75px}
 main{max-width:1100px;margin:auto;padding:35px 5%}
-.section-title{font-size:30px;margin-bottom:18px}.categories{display:flex;gap:10px;overflow:auto;margin-bottom:25px}.cat{border:1px solid #ddd;background:white;padding:10px 16px;border-radius:22px;cursor:pointer;white-space:nowrap}.cat.active{background:#ff8a00;color:white;border-color:#ff8a00}
-.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.food{background:white;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #00000010}.food-img{height:155px;background:#ffe0b2;display:flex;align-items:center;justify-content:center;font-size:65px}.food-info{padding:17px}.food-info h3{margin-bottom:6px}.food-info p{color:#777;font-size:13px;min-height:32px}.row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}.price{font-weight:900;color:#e56f00}.add{border:0;background:#171717;color:white;border-radius:20px;padding:9px 14px;cursor:pointer}
-.cart{position:fixed;right:-420px;top:0;width:min(390px,100%);height:100%;background:white;z-index:20;box-shadow:-5px 0 25px #0003;padding:25px;transition:.3s;overflow:auto}.cart.open{right:0}.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{border:0;background:#eee;border-radius:50%;width:34px;height:34px;cursor:pointer}.cart-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:13px 0}.cart-item small{color:#777}.total{font-size:22px;font-weight:900;display:flex;justify-content:space-between;margin:22px 0}.checkout{width:100%;padding:14px;background:#ff8a00;border:0;border-radius:10px;font-weight:900;cursor:pointer}
-form{display:none;margin-top:18px;background:#fff8ef;padding:16px;border-radius:12px}form.show{display:block}input,select{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px}
-footer{background:#171717;color:#bbb;text-align:center;padding:30px 5%;margin-top:30px}footer strong{color:#ff8a00}
-.empty{text-align:center;color:#777;padding:30px 0}
+.section-title{font-size:30px;margin-bottom:18px}.categories{display:flex;gap:10px;overflow:auto;margin-bottom:25px}.cat{border:1px solid #f1c5d4;background:#fff;padding:10px 16px;border-radius:22px;cursor:pointer;white-space:nowrap}.cat.active{background:#e91e63;color:white;border-color:#e91e63}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.food{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #00000010}.food-img{height:155px;background:#fde0ea;display:flex;align-items:center;justify-content:center;font-size:65px}.food-info{padding:17px}.food-info h3{margin-bottom:6px}.food-info p{color:#8b6f7b;font-size:13px;min-height:32px}.row{display:flex;justify-content:space-between;align-items:center;margin-top:14px}.price{font-weight:900;color:#d81b60}.add{border:0;background:#fff;color:#2b1b24;border-radius:20px;padding:9px 14px;cursor:pointer}
+.cart{position:fixed;right:-420px;top:0;width:min(390px,100%);height:100%;background:#fff;z-index:20;box-shadow:-5px 0 25px #0003;padding:25px;transition:.3s;overflow:auto}.cart.open{right:0}.cart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{border:0;background:#f8e7ee;border-radius:50%;width:34px;height:34px;cursor:pointer}.cart-item{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:13px 0}.cart-item small{color:#8b6f7b}.qty-box{display:flex;align-items:center;gap:5px;margin-top:7px}.qty-input{width:58px;padding:7px 5px;border:1px solid #e7b6c8;border-radius:8px;text-align:center;font-weight:800}.qty-btn{width:30px;height:30px;border:1px solid #e7b6c8;background:#fff0f5;border-radius:7px;font-weight:900;cursor:pointer}.total{font-size:22px;font-weight:900;display:flex;justify-content:space-between;margin:22px 0}.checkout{width:100%;padding:14px;background:#e91e63;border:0;border-radius:10px;font-weight:900;cursor:pointer}
+form{display:none;margin-top:18px;background:#fff5f8;padding:16px;border-radius:12px}form.show{display:block}input,select{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px}
+footer{background:#171717;color:#8b6f7b;text-align:center;padding:30px 5%;margin-top:30px}footer strong{color:#e91e63}
+.empty{text-align:center;color:#8b6f7b;padding:30px 0}
 @media(max-width:750px){.hero-inner{grid-template-columns:1fr}.hero-card{display:none}.menu{grid-template-columns:repeat(2,1fr)}.food-img{height:120px;font-size:50px}}
 @media(max-width:480px){.menu{grid-template-columns:1fr}.hero{padding:40px 5%}}
 
-.brand{display:flex;align-items:center;gap:10px}.brand-mark{width:42px;height:42px;border-radius:12px;background:#ff8a00;color:#171717;display:flex;align-items:center;justify-content:center;font-weight:1000;font-size:12px;box-shadow:0 0 0 2px #fff3}.brand-mark span{font-size:17px;margin-left:-2px}.logo{display:flex;flex-direction:column}.logo small{font-size:9px;font-weight:500;color:#bbb;margin-top:3px;letter-spacing:.4px}.hero-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}.hero-btn,.wa-btn{padding:13px 19px;border-radius:25px;font-weight:900;text-decoration:none;border:0;cursor:pointer}.hero-btn{background:#fff;color:#171717}.wa-btn{background:#25d366;color:#fff}.menu-note{color:#777;margin-top:-10px;margin-bottom:18px}.price{font-size:14px}
+.brand{display:flex;align-items:center;gap:10px}.brand-mark{width:42px;height:42px;border-radius:12px;background:#e91e63;color:#2b1b24;display:flex;align-items:center;justify-content:center;font-weight:1000;font-size:12px;box-shadow:0 0 0 2px #fff3}.brand-mark span{font-size:17px;margin-left:-2px}.logo{display:flex;flex-direction:column}.logo small{font-size:9px;font-weight:500;color:#8b6f7b;margin-top:3px;letter-spacing:.4px}.hero-actions{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}.hero-btn,.wa-btn{padding:13px 19px;border-radius:25px;font-weight:900;text-decoration:none;border:0;cursor:pointer}.hero-btn{background:#fff;color:#2b1b24}.wa-btn{background:#25d366;color:#fff}.menu-note{color:#8b6f7b;margin-top:-10px;margin-bottom:18px}.price{font-size:14px}
 
 .secure-note{font-size:12px;color:#666;line-height:1.5;margin-top:10px}
 .checkout{margin-top:4px}
+
+/* Pink & white theme */
+body{background:#fff;color:#2b1b24}
+header{background:#fff;border-bottom:1px solid #f3d5df}
+.logo{color:#e91e63}.logo span{color:#2b1b24}
+.cart-btn,.cat.active,.checkout{background:#e91e63;color:#fff}
+.hero{background:linear-gradient(135deg,#f9b3c9,#e91e63)}
+.food,.cart,form{background:#fff}
+.food-img{background:#fde0ea}
+.add{background:#2b1b24;color:#fff}
+.price{color:#d81b60}
+.brand-mark{background:#e91e63;color:#fff}
+footer{background:#fff0f5;color:#8b6f7b;border-top:1px solid #f3d5df}
+footer strong{color:#e91e63}
 </style>
 </head>
 <body>
@@ -68,14 +82,20 @@ footer{background:#171717;color:#bbb;text-align:center;padding:30px 5%;margin-to
 <input id="email" type="email" required placeholder="Email address (for payment receipt)">
 <select id="location" required><option value="">Select campus delivery point</option><option>Main Gate</option><option>Hostel</option><option>Lecture Hall</option><option>Other campus location</option></select>
 <input id="note" placeholder="Room/block or delivery note">
-<button class="checkout" type="submit">💳 PAY & PLACE ORDER</button>
-<p class="secure-note">🔒 Secure online payment powered by Paystack. Your order is sent to BIG TUNZ after payment is verified.</p>
+<div style="background:#f4f4f4;border-radius:14px;padding:15px;margin:12px 0;border:1px solid #ddd">
+  <div style="font-weight:900;font-size:18px;margin-bottom:8px">🟢 PAY WITH OPay</div>
+  <div style="margin:5px 0"><b>Account name:</b> BABATUNDE OLADIPO</div>
+  <div style="margin:5px 0"><b>OPay number:</b> 07072378866</div>
+  <div style="margin-top:10px;font-size:13px;color:#666">Transfer the exact order total to the OPay account above, then tap the button below. Your WhatsApp order message will open automatically.</div>
+</div>
+<button class="checkout" type="submit">🟢 I HAVE PAID — SEND ORDER</button>
+<p class="secure-note">Payment is made by OPay transfer. BIG TUNZ FOODIES will confirm the payment before preparing your order.</p>
 </form>
 </aside>
 
 <footer><strong>BIG TUNZ FOODIES</strong><br><br>
 Igbinedion University • Fresh & ready to deliver<br><br>
-📞 Order: <a href="tel:07072378866" style="color:#ff8a00">0707 237 8866</a><br>
+📞 Order: <a href="tel:07072378866" style="color:#e91e63">0707 237 8866</a><br>
 💬 WhatsApp / DM: <a href="https://wa.me/2347072378866" target="_blank" style="color:#25d366">0707 237 8866</a><br><br>
 Fast delivery to your doorstep!<br><br>© 2026 BIG TUNZ FOODIES</footer>
 
@@ -97,11 +117,12 @@ document.getElementById("menu").innerHTML=list.map((f,i)=>`
 <div class="food"><div class="food-img">${f.emoji}</div><div class="food-info"><h3>${f.name}</h3><p>${f.desc}</p><div class="row"><span class="price">${naira(f.price)}</span><button class="add" onclick="add(${foods.indexOf(f)})">+ Add</button></div></div></div>`).join("");
 }
 function filterFood(cat,el){document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderMenu(cat==="all"?foods:foods.filter(x=>x.cat===cat))}
-function add(i){let f=foods[i],item=cart.find(x=>x.name===f.name);item?item.qty++:cart.push({...f,qty:1});renderCart()}
-function remove(i){cart[i].qty--;if(cart[i].qty<=0)cart.splice(i,1);renderCart()}
+function add(i){let f=foods[i],item=cart.find(x=>x.name===f.name);if(item){if(item.qty<50)item.qty++;else alert("Maximum quantity for each item is 50.")}else cart.push({...f,qty:1});renderCart()}
+function remove(i){if(cart[i].qty>1){cart[i].qty--;}else{cart.splice(i,1);}renderCart()}
+function setQty(i,value){let qty=parseInt(value,10);if(isNaN(qty))qty=1;qty=Math.max(1,Math.min(50,qty));cart[i].qty=qty;renderCart()}
 function renderCart(){
 document.getElementById("count").textContent=cart.reduce((a,x)=>a+x.qty,0);
-document.getElementById("cartItems").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><b>${x.name}</b><br><small>${naira(x.price)} × ${x.qty}</small></div><div><button onclick="remove(${i})">−</button> <button onclick="add(${foods.findIndex(f=>f.name===x.name)})">+</button></div></div>`).join(""):'<div class="empty">Your cart is empty.</div>';
+document.getElementById("cartItems").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><b>${x.name}</b><br><small>${naira(x.price)} each</small><div class="qty-box"><button class="qty-btn" onclick="remove(${i})">−</button><input class="qty-input" type="number" min="1" max="50" value="${x.qty}" aria-label="Quantity for ${x.name}" onchange="setQty(${i},this.value)" oninput="if(this.value>50)this.value=50;if(this.value<1&&this.value!=="")this.value=1"><button class="qty-btn" onclick="add(${foods.findIndex(f=>f.name===x.name)})">+</button></div><small>Subtotal: ${naira(x.price*x.qty)}</small></div></div>`).join(""):'<div class="empty">Your cart is empty.</div>';
 const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
 document.getElementById("total").textContent=naira(subtotal+300+800);
 document.getElementById("packagingLine").style.display=cart.length?"flex":"none";
@@ -112,22 +133,17 @@ function showForm(){if(!cart.length)return alert("Please add a meal first.");doc
 async function placeOrder(e){
 e.preventDefault();
 if(!cart.length)return alert("Please add a meal first.");
-const order={
-name:document.getElementById("name").value.trim(),
-phone:document.getElementById("phone").value.trim(),
-email:document.getElementById("email").value.trim(),
-location:document.getElementById("location").value,
-note:document.getElementById("note").value.trim(),
-items:cart.map(x=>({name:x.name,qty:x.qty,price:x.price})),
-amount:cart.reduce((a,x)=>a+x.price*x.qty,0)+300+800
-};
-try{
-  const res=await fetch("/api/create-payment",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)});
-  const data=await res.json();
-  if(!res.ok) throw new Error(data.error||"Could not start payment.");
-  if(data.authorization_url) window.location.href=data.authorization_url;
-  else throw new Error("Payment link was not returned.");
-}catch(err){alert(err.message+"\n\nIf this is a new installation, the Paystack server settings still need to be connected.")}
+const name=document.getElementById("name").value.trim();
+const phone=document.getElementById("phone").value.trim();
+const email=document.getElementById("email").value.trim();
+const location=document.getElementById("location").value;
+const note=document.getElementById("note").value.trim();
+if(!name||!phone||!email||!location)return alert("Please complete your name, phone, email and delivery location.");
+const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
+const total=subtotal+300+800;
+const lines=cart.map(x=>`• ${x.name} × ${x.qty} — ${naira(x.price*x.qty)}`).join("\n");
+const message=`Hello BIG TUNZ FOODIES 👋\n\nI have made my OPay payment and want to place this order.\n\nCustomer: ${name}\nPhone: ${phone}\nDelivery: ${location}\nEmail: ${email}\n\nORDER:\n${lines}\n\nPackaging: ${naira(300)}\nDelivery: ${naira(800)}\nTOTAL PAID: ${naira(total)}\n\nOPay account paid to: BABATUNDE OLADIPO (07072378866)${note?`\n\nNote: ${note}`:""}\n\nPlease confirm my payment and order. Thank you!`;
+window.location.href=`https://wa.me/2347072378866?text=${encodeURIComponent(message)}`;
 }
 renderMenu();renderCart();
 </script>
