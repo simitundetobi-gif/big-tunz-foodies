@@ -44,6 +44,12 @@ header{background:#fff;border-bottom:1px solid #f3d5df}
 .brand-mark{background:#e91e63;color:#fff}
 footer{background:#fff0f5;color:#8b6f7b;border-top:1px solid #f3d5df}
 footer strong{color:#e91e63}
+
+.bonus-banner{padding:22px 5%;background:linear-gradient(135deg,#e91e63,#ff6f91);color:#fff}
+.bonus-inner{max-width:1100px;margin:auto;display:flex;align-items:center;gap:18px;background:#ffffff18;border:1px solid #ffffff55;border-radius:20px;padding:20px}
+.bonus-icon{font-size:45px;white-space:nowrap}.bonus-tag{display:inline-block;background:#fff;color:#e91e63;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:900;margin-bottom:8px}.bonus-inner h2{margin-bottom:6px}.bonus-inner p{line-height:1.5;margin-bottom:7px}
+.owner-link{display:inline-block;margin-top:12px;color:#fff;text-decoration:none;font-size:12px;opacity:.65}
+@media(max-width:600px){.bonus-inner{align-items:flex-start}.bonus-icon{font-size:34px}}
 </style>
 </head>
 <body>
@@ -56,6 +62,18 @@ footer strong{color:#e91e63}
 <div><span class="badge">🔥 IGBINEDION UNIVERSITY CAMPUS</span><h1>Hot food.<br>Fast delivery.</h1><p>Craving juicy turkey, crispy chicken, sausages, dodo, pancakes, fried eggs or chilled zobo? Order from BIG TUNZ FOODIES and get your food delivered straight to your door.</p><div class="hero-actions"><button class="hero-btn" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">ORDER NOW</button><a class="wa-btn" href="https://wa.me/2347072378866?text=Hello%20BIG%20TUNZ%20FOODIES%2C%20I%20want%20to%20place%20an%20order." target="_blank">💬 WhatsApp</a></div></div>
 <div class="hero-card">🍔<br>🍟 🥤</div>
 </div></section>
+
+<section class="bonus-banner">
+  <div class="bonus-inner">
+    <div class="bonus-icon">🎄🎁</div>
+    <div>
+      <span class="bonus-tag">NOVEMBER 30 – DECEMBER 6</span>
+      <h2>🎄 BIG TUNZ CHRISTMAS BONUS 🎁</h2>
+      <p>Christmas is coming! Order during our bonus week for a chance to receive special gifts and rewards from BIG TUNZ FOODIES.</p>
+      <strong>More orders • More chances to get rewarded!</strong>
+    </div>
+  </div>
+</section>
 
 <main>
 <h2 class="section-title">What are you craving?</h2><p class="menu-note">Fresh & ready to deliver • Igbinedion University campus</p>
@@ -73,7 +91,7 @@ footer strong{color:#e91e63}
 <div class="cart-head"><h2>Your Order</h2><button class="close" onclick="toggleCart()">✕</button></div>
 <div id="cartItems"></div>
 <div id="packagingLine" style="display:flex;justify-content:space-between;border-top:1px solid #eee;padding-top:13px;color:#666;font-size:14px"><span>Packaging per order</span><span>₦300</span></div>
-<div id="deliveryLine" style="display:flex;justify-content:space-between;color:#666;font-size:14px;padding-top:8px"><span>Delivery</span><span>₦800</span></div>
+<div id="deliveryLine" style="display:flex;justify-content:space-between;color:#666;font-size:14px;padding-top:8px"><span>Delivery</span><span>₦500</span></div>
 <div class="total"><span>Total</span><span id="total">₦1,100</span></div>
 <button class="checkout" onclick="showForm()">PROCEED TO CHECKOUT</button>
 <form id="orderForm" onsubmit="placeOrder(event)">
@@ -97,7 +115,7 @@ footer strong{color:#e91e63}
 Igbinedion University • Fresh & ready to deliver<br><br>
 📞 Order: <a href="tel:07072378866" style="color:#e91e63">0707 237 8866</a><br>
 💬 WhatsApp / DM: <a href="https://wa.me/2347072378866" target="_blank" style="color:#25d366">0707 237 8866</a><br><br>
-Fast delivery to your doorstep!<br><br>© 2026 BIG TUNZ FOODIES</footer>
+Fast delivery to your doorstep!<br><br><a class="owner-link" href="/owner">Owner Dashboard</a><br><br>© 2026 BIG TUNZ FOODIES</footer>
 
 <script>
 const foods=[
@@ -125,7 +143,7 @@ function renderCart(){
 document.getElementById("count").textContent=cart.reduce((a,x)=>a+x.qty,0);
 document.getElementById("cartItems").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><b>${x.name}</b><br><small>${naira(x.price)} each</small><div class="qty-box"><button class="qty-btn" onclick="remove(${i})">−</button><input class="qty-input" type="number" min="1" max="50" value="${x.qty}" aria-label="Quantity for ${x.name}" onchange="setQty(${i},this.value)" oninput="if(this.value>50)this.value=50;if(this.value<1&&this.value!=="")this.value=1"><button class="qty-btn" onclick="add(${foods.findIndex(f=>f.name===x.name)})">+</button></div><small>Subtotal: ${naira(x.price*x.qty)}</small></div></div>`).join(""):'<div class="empty">Your cart is empty.</div>';
 const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
-document.getElementById("total").textContent=naira(subtotal+300+800);
+document.getElementById("total").textContent=naira(subtotal+300+500);
 document.getElementById("packagingLine").style.display=cart.length?"flex":"none";
 document.getElementById("deliveryLine").style.display=cart.length?"flex":"none";
 }
@@ -141,9 +159,13 @@ const location=document.getElementById("location").value;
 const note=document.getElementById("note").value.trim();
 if(!name||!phone||!email||!location)return alert("Please complete your name, phone, email and delivery location.");
 const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
-const total=subtotal+300+800;
+const total=subtotal+300+500;
 const lines=cart.map(x=>`• ${x.name} × ${x.qty} — ${naira(x.price*x.qty)}`).join("\n");
-const message=`Hello BIG TUNZ FOODIES 👋\n\nI have made my OPay payment and want to place this order.\n\nCustomer: ${name}\nPhone: ${phone}\nDelivery: ${location}\nEmail: ${email}\n\nORDER:\n${lines}\n\nPackaging: ${naira(300)}\nDelivery: ${naira(800)}\nTOTAL PAID: ${naira(total)}\n\nOPay account paid to: BABATUNDE OLADIPO (07072378866)${note?`\n\nNote: ${note}`:""}\n\nPlease confirm my payment and order. Thank you!`;
+const message=`Hello BIG TUNZ FOODIES 👋\n\nI have made my OPay payment and want to place this order.\n\nCustomer: ${name}\nPhone: ${phone}\nDelivery: ${location}\nEmail: ${email}\n\nORDER:\n${lines}\n\nPackaging: ${naira(300)}\nDelivery: ${naira(500)}\nTOTAL PAID: ${naira(total)}\n\nOPay account paid to: BABATUNDE OLADIPO (07072378866)${note?`\n\nNote: ${note}`:""}\n\nPlease confirm my payment and order. Thank you!`;
+try{
+  const response=await fetch('/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({total,customer:name})});
+  if(response.ok){const data=await response.json(); alert(`Order submitted! Order #${data.orderNumber}`);}
+}catch(err){ console.warn('Order counter unavailable:',err); }
 window.location.href=`https://wa.me/2347072378866?text=${encodeURIComponent(message)}`;
 }
 renderMenu();renderCart();
