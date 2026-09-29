@@ -101,6 +101,26 @@ footer a{color:#ff3030!important}
 .floating-cart .cart-badge{background:#fff!important;color:#b00000!important;border-color:#b00000!important}
 hr{border-color:#330000!important}
 
+
+/* Separate checkout screen */
+.checkout-screen{position:fixed;inset:0;z-index:80;background:rgba(0,0,0,.78);backdrop-filter:blur(4px);color:#fff;display:none;overflow:auto;padding:20px 14px 40px;align-items:center;justify-content:center}
+.checkout-screen.show{display:flex}
+.checkout-wrap{width:min(680px,100%);margin:auto;max-height:92vh;overflow:auto;position:relative}
+.checkout-top{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.checkout-back{border:1px solid #5a0000;background:#160000;color:#fff;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}.checkout-close{margin-left:auto;border:1px solid #5a0000;background:#160000;color:#fff;border-radius:50%;width:40px;height:40px;font-size:18px;font-weight:900;cursor:pointer}.checkout-close:hover{background:#b00000}
+.checkout-title{font-size:25px;font-weight:900}
+.checkout-card{background:#101010;border:2px solid #8f0000;border-radius:18px;padding:18px;box-shadow:0 18px 60px #000;position:relative}
+.checkout-summary{border-bottom:1px solid #330000;padding-bottom:14px;margin-bottom:14px}
+.checkout-summary-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;color:#ddd;font-size:14px}
+.checkout-summary-total{display:flex;justify-content:space-between;font-size:21px;font-weight:900;color:#fff;padding-top:10px}
+.checkout-screen form{display:block;margin:0;background:transparent;padding:0}
+.checkout-screen input,.checkout-screen select{background:#080808!important;color:#fff!important;border:1px solid #444!important;margin:8px 0}
+.checkout-screen input::placeholder{color:#888!important}
+.checkout-screen select option{background:#111;color:#fff}
+.opay-card{background:#f4f4f4;color:#111;border-radius:15px;padding:16px;margin:14px 0;border:1px solid #ccc}
+.opay-card .opay-title{font-weight:900;font-size:18px;margin-bottom:8px}
+.checkout-screen .secure-note{color:#aaa}
+
 </style>
 </head>
 <body>
@@ -150,22 +170,41 @@ hr{border-color:#330000!important}
 <div id="deliveryLine" style="display:flex;justify-content:space-between;color:#666;font-size:14px;padding-top:8px"><span>Delivery</span><span>₦500</span></div>
 <div class="total"><span>Total</span><span id="total">₦1,100</span></div>
 <button class="checkout" onclick="showForm()">PROCEED TO CHECKOUT</button>
-<form id="orderForm" onsubmit="placeOrder(event)">
-<input id="name" required placeholder="Your name">
-<input id="phone" required placeholder="Phone number">
-<input id="email" type="email" required placeholder="Email address (for payment receipt)">
-<select id="location" required><option value="">Select campus delivery point</option><option>Main Gate</option><option>Hostel</option><option>Lecture Hall</option><option>Other campus location</option></select>
-<input id="note" placeholder="Room/block or delivery note">
-<div style="background:#f4f4f4;border-radius:14px;padding:15px;margin:12px 0;border:1px solid #ddd">
-  <div style="font-weight:900;font-size:18px;margin-bottom:8px">🟢 PAY WITH OPay</div>
-  <div style="margin:5px 0"><b>Account name:</b> BABATUNDE OLADIPO</div>
-  <div style="margin:5px 0"><b>OPay number:</b> 07072378866</div>
-  <div style="margin-top:10px;font-size:13px;color:#666">Transfer the exact order total to the OPay account above, then tap the button below. Your WhatsApp order message will open automatically.</div>
-</div>
-<button class="checkout" type="submit">🟢 I HAVE PAID — SEND ORDER</button>
-<p class="secure-note">Payment is made by OPay transfer. BIG TUNZ FOODIES will confirm the payment before preparing your order.</p>
-</form>
 </aside>
+
+<section class="checkout-screen" id="checkoutScreen" aria-label="Checkout">
+  <div class="checkout-wrap">
+    <div class="checkout-top">
+      <button class="checkout-back" type="button" onclick="hideForm()">← Back to Cart</button>
+      <div class="checkout-title">Checkout</div>
+      <button class="checkout-close" type="button" onclick="hideForm()" aria-label="Close checkout">✕</button>
+    </div>
+    <div class="checkout-card">
+      <div class="checkout-summary">
+        <h3 style="margin-bottom:8px">Order Summary</h3>
+        <div id="checkoutSummary"></div>
+        <div class="checkout-summary-row"><span>Packaging</span><span>₦300</span></div>
+        <div class="checkout-summary-row"><span>Delivery</span><span>₦500</span></div>
+        <div class="checkout-summary-total"><span>Total</span><span id="checkoutTotal">₦0</span></div>
+      </div>
+      <form id="orderForm" onsubmit="placeOrder(event)">
+        <input id="name" required placeholder="Your name">
+        <input id="phone" required placeholder="Phone number">
+        <input id="email" type="email" required placeholder="Email address (for payment receipt)">
+        <select id="location" required><option value="">Select campus delivery point</option><option>Main Gate</option><option>Hostel</option><option>Lecture Hall</option><option>Other campus location</option></select>
+        <input id="note" placeholder="Room/block or delivery note">
+        <div class="opay-card">
+          <div class="opay-title">🟢 PAY WITH OPay</div>
+          <div><b>Account name:</b> BABATUNDE OLADIPO</div>
+          <div style="margin-top:6px"><b>OPay number:</b> 07072378866</div>
+          <div style="margin-top:10px;font-size:13px">Transfer the exact order total to the OPay account above, then tap the button below. Your WhatsApp order message will open automatically.</div>
+        </div>
+        <button class="checkout" type="submit">🟢 I HAVE PAID — SEND ORDER</button>
+        <p class="secure-note">Payment is made by OPay transfer. BIG TUNZ FOODIES will confirm the payment before preparing your order.</p>
+      </form>
+    </div>
+  </div>
+</section>
 
 <footer><strong>BIG TUNZ FOODIES</strong><br><br>
 Igbinedion University • Fresh & ready to deliver<br><br>
@@ -207,7 +246,20 @@ document.getElementById("packagingLine").style.display=cart.length?"flex":"none"
 document.getElementById("deliveryLine").style.display=cart.length?"flex":"none";
 }
 function toggleCart(){document.getElementById("cart").classList.toggle("open")}
-function showForm(){if(!cart.length)return alert("Please add a meal first.");document.getElementById("orderForm").classList.add("show")}
+function showForm(){
+  if(!cart.length)return alert("Please add a meal first.");
+  document.getElementById("cart").classList.remove("open");
+  const summary=document.getElementById("checkoutSummary");
+  summary.innerHTML=cart.map(x=>`<div class="checkout-summary-row"><span>${x.name} × ${x.qty}</span><span>${naira(x.price*x.qty)}</span></div>`).join("");
+  const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
+  document.getElementById("checkoutTotal").textContent=naira(subtotal+300+500);
+  document.getElementById("checkoutScreen").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function hideForm(){
+  document.getElementById("checkoutScreen").classList.remove("show");
+  document.body.style.overflow="";
+}
 async function placeOrder(e){
 e.preventDefault();
 if(!cart.length)return alert("Please add a meal first.");
