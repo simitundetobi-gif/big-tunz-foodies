@@ -166,7 +166,7 @@ hr{border-color:#330000!important}
 <aside class="cart" id="cart">
 <div class="cart-head"><h2>Your Order</h2><button class="close" onclick="toggleCart()">✕</button></div>
 <div id="cartItems"></div>
-<div id="packagingLine" style="display:flex;justify-content:space-between;border-top:1px solid #eee;padding-top:13px;color:#666;font-size:14px"><span>Packaging per order</span><span>₦300</span></div>
+<div id="packagingLine" style="display:flex;justify-content:space-between;border-top:1px solid #eee;padding-top:13px;color:#666;font-size:14px"><span>Packaging</span><span id="packagingAmount">₦400</span></div>
 <div id="deliveryLine" style="display:flex;justify-content:space-between;color:#666;font-size:14px;padding-top:8px"><span>Delivery</span><span>₦500</span></div>
 <div class="total"><span>Total</span><span id="total">₦1,100</span></div>
 <button class="checkout" onclick="showForm()">PROCEED TO CHECKOUT</button>
@@ -183,7 +183,7 @@ hr{border-color:#330000!important}
       <div class="checkout-summary">
         <h3 style="margin-bottom:8px">Order Summary</h3>
         <div id="checkoutSummary"></div>
-        <div class="checkout-summary-row"><span>Packaging</span><span>₦300</span></div>
+        <div class="checkout-summary-row packaging-row"><span>Packaging</span><span id="checkoutPackagingAmount">₦400</span></div>
         <div class="checkout-summary-row"><span>Delivery</span><span>₦500</span></div>
         <div class="checkout-summary-total"><span>Total</span><span id="checkoutTotal">₦0</span></div>
       </div>
@@ -234,6 +234,7 @@ function filterFood(cat,el){document.querySelectorAll(".cat").forEach(x=>x.class
 function add(i){let f=foods[i],item=cart.find(x=>x.name===f.name);if(item){if(item.qty<50)item.qty++;else alert("Maximum quantity for each item is 50.")}else cart.push({...f,qty:1});renderCart()}
 function remove(i){if(cart[i].qty>1){cart[i].qty--;}else{cart.splice(i,1);}renderCart()}
 function setQty(i,value){let qty=parseInt(value,10);if(isNaN(qty))qty=1;qty=Math.max(1,Math.min(50,qty));cart[i].qty=qty;renderCart()}
+function packagingFee(){ return 400; }
 function renderCart(){
 const itemCount=cart.reduce((a,x)=>a+x.qty,0);
 document.getElementById("count").textContent=itemCount;
@@ -241,9 +242,9 @@ const floatingCount=document.getElementById("floatingCount");
 if(floatingCount) floatingCount.textContent=itemCount;
 document.getElementById("cartItems").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><b>${x.name}</b><br><small>${naira(x.price)} each</small><div class="qty-box"><button class="qty-btn" onclick="remove(${i})">−</button><input class="qty-input" type="number" min="1" max="50" value="${x.qty}" aria-label="Quantity for ${x.name}" onchange="setQty(${i},this.value)" oninput="if(this.value>50)this.value=50;if(this.value<1&&this.value!=="")this.value=1"><button class="qty-btn" onclick="add(${foods.findIndex(f=>f.name===x.name)})">+</button></div><small>Subtotal: ${naira(x.price*x.qty)}</small></div></div>`).join(""):'<div class="empty">Your cart is empty.</div>';
 const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
-document.getElementById("total").textContent=naira(subtotal+300+500);
+const packaging=packagingFee(); document.getElementById("total").textContent=naira(subtotal+packaging+500);
 document.getElementById("packagingLine").style.display=cart.length?"flex":"none";
-document.getElementById("deliveryLine").style.display=cart.length?"flex":"none";
+document.getElementById("deliveryLine").style.display=cart.length?"flex":"none"; document.getElementById("packagingAmount").textContent=naira(packagingFee());
 }
 function toggleCart(){document.getElementById("cart").classList.toggle("open")}
 function showForm(){
@@ -252,7 +253,7 @@ function showForm(){
   const summary=document.getElementById("checkoutSummary");
   summary.innerHTML=cart.map(x=>`<div class="checkout-summary-row"><span>${x.name} × ${x.qty}</span><span>${naira(x.price*x.qty)}</span></div>`).join("");
   const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
-  document.getElementById("checkoutTotal").textContent=naira(subtotal+300+500);
+  const packaging=packagingFee(); document.getElementById("checkoutTotal").textContent=naira(subtotal+packaging+500); document.getElementById("checkoutPackagingAmount").textContent=naira(packaging);
   document.getElementById("checkoutScreen").classList.add("show");
   document.body.style.overflow="hidden";
 }
@@ -270,9 +271,9 @@ const location=document.getElementById("location").value;
 const note=document.getElementById("note").value.trim();
 if(!name||!phone||!email||!location)return alert("Please complete your name, phone, email and delivery location.");
 const subtotal=cart.reduce((a,x)=>a+x.price*x.qty,0);
-const total=subtotal+300+500;
+const packaging=packagingFee(); const total=subtotal+packaging+500;
 const lines=cart.map(x=>`• ${x.name} × ${x.qty} — ${naira(x.price*x.qty)}`).join("\n");
-const message=`Hello BIG TUNZ FOODIES 👋\n\nI have made my OPay payment and want to place this order.\n\nCustomer: ${name}\nPhone: ${phone}\nDelivery: ${location}\nEmail: ${email}\n\nORDER:\n${lines}\n\nPackaging: ${naira(300)}\nDelivery: ${naira(500)}\nTOTAL PAID: ${naira(total)}\n\nOPay account paid to: BABATUNDE OLADIPO (07072378866)${note?`\n\nNote: ${note}`:""}\n\nPlease confirm my payment and order. Thank you!`;
+const message=`Hello BIG TUNZ FOODIES 👋\n\nI have made my OPay payment and want to place this order.\n\nCustomer: ${name}\nPhone: ${phone}\nDelivery: ${location}\nEmail: ${email}\n\nORDER:\n${lines}\n\nGeneral packaging: ${naira(packaging)}\nDelivery: ${naira(500)}\nTOTAL PAID: ${naira(total)}\n\nOPay account paid to: BABATUNDE OLADIPO (07072378866)${note?`\n\nNote: ${note}`:""}\n\nPlease confirm my payment and order. Thank you!`;
 try{
   const response=await fetch('/api/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({total,customer:name})});
   if(response.ok){const data=await response.json(); alert(`Order submitted! Order #${data.orderNumber}`);}
