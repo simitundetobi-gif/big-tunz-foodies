@@ -52,13 +52,55 @@ footer strong{color:#e91e63}
 @media(max-width:600px){.bonus-inner{align-items:flex-start}.bonus-icon{font-size:34px}}
 
 /* Full-page BIG TUNZ background + floating trolley cart */
-body{position:relative;min-height:100vh;background:linear-gradient(135deg,#050505 0%,#160308 35%,#5b0018 70%,#c4002f 100%);color:#2b1b24;isolation:isolate}
-body::before{content:"";position:fixed;inset:0;background:url("big-tunz-background.png") center top/cover no-repeat;opacity:.18;z-index:-2;pointer-events:none}
-body::after{content:"";position:fixed;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.62),rgba(110,0,25,.45),rgba(220,0,50,.25));z-index:-1;pointer-events:none}
+body{position:relative;min-height:100vh;background:#fff;color:#2b1b24;isolation:isolate}
 .floating-cart{position:fixed;right:20px;bottom:22px;width:66px;height:66px;border:0;border-radius:50%;background:#e91e63;color:#fff;display:flex;align-items:center;justify-content:center;z-index:50;box-shadow:0 10px 25px rgba(233,30,99,.38);cursor:pointer}
 .floating-cart svg{width:34px;height:34px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
 .floating-cart .cart-badge{position:absolute;right:-2px;top:-4px;min-width:24px;height:24px;padding:0 6px;border-radius:20px;background:#222;color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
 @media(max-width:480px){.floating-cart{right:16px;bottom:18px;width:60px;height:60px}.floating-cart svg{width:31px;height:31px}}
+
+/* FINAL BIG TUNZ DEEP RED + BLACK THEME — no background pictures */
+html,body{background:#070707!important;color:#f5f5f5!important}
+body{background-image:none!important}
+header{background:#090909!important;color:#fff!important;border-bottom:1px solid #3a0000!important;box-shadow:0 3px 16px #000!important}
+.logo{color:#e00000!important}.logo span{color:#fff!important}.logo small{color:#aaa!important}
+.brand-mark{background:#b00000!important;color:#fff!important;box-shadow:0 0 0 2px #550000!important}
+.cart-btn,.cat.active,.checkout{background:#b00000!important;color:#fff!important}
+.cart-btn:hover,.checkout:hover,.add:hover{background:#e00000!important}
+.hero{background:linear-gradient(135deg,#080808 0%,#240000 52%,#8f0000 100%)!important;color:#fff!important;border-bottom:1px solid #520000}
+.badge{background:#b00000!important;color:#fff!important}
+.hero-btn{background:#fff!important;color:#111!important}
+.hero-card{background:#b0000025!important;border-color:#b0000066!important}
+.bonus-banner{background:linear-gradient(135deg,#090909,#350000,#a00000)!important;color:#fff!important}
+.bonus-inner{background:#0008!important;border-color:#8f000066!important}
+.bonus-tag{background:#b00000!important;color:#fff!important}
+main{background:#070707!important}
+.section-title{color:#fff!important}.menu-note{color:#aaa!important}
+.categories .cat{background:#111!important;color:#ddd!important;border-color:#450000!important}
+.categories .cat.active{background:#b00000!important;color:#fff!important;border-color:#b00000!important}
+.food{background:#101010!important;color:#fff!important;border:1px solid #2e2e2e!important;box-shadow:0 7px 20px #000!important}
+.food-img{background:#190000!important}
+.food-info p,.empty,.secure-note{color:#aaa!important}
+.price{color:#ff3030!important}
+.add{background:#b00000!important;color:#fff!important}
+.cart{background:#0b0b0b!important;color:#fff!important;box-shadow:-8px 0 28px #000!important}
+.cart-head{border-bottom:1px solid #300000}
+.close{background:#300000!important;color:#fff!important}
+.cart-item{border-bottom-color:#333!important}
+.cart-item small{color:#aaa!important}
+.qty-input{background:#151515!important;color:#fff!important;border-color:#5a0000!important}
+.qty-btn{background:#2a0000!important;color:#fff!important;border-color:#700000!important}
+.total{color:#fff!important}
+form{background:#111!important;color:#fff!important}
+input,select{background:#080808!important;color:#fff!important;border-color:#444!important}
+input::placeholder{color:#888!important}
+form select option{background:#111;color:#fff}
+footer{background:#050505!important;color:#888!important;border-top:1px solid #3a0000!important}
+footer strong{color:#e00000!important}
+footer a{color:#ff3030!important}
+.floating-cart{background:#b00000!important;box-shadow:0 10px 28px #b0000066!important}
+.floating-cart .cart-badge{background:#fff!important;color:#b00000!important;border-color:#b00000!important}
+hr{border-color:#330000!important}
+
 </style>
 </head>
 <body>
